@@ -1,15 +1,15 @@
-# 🤟 SignSpeak - Real-time Sign Language Interpreter
+# 🤟 InSync - Real-time Sign Language Interpreter
 
 > **Bridging Communication Gaps in Video Meetings**
 
-SignSpeak is an innovative real-time sign language interpreter designed specifically for video meetings. It seamlessly translates between speech and sign language, making video conferences accessible for deaf and hard-of-hearing participants while enabling hearing participants to understand sign language communication.
+InSync is an innovative real-time sign language to speech interpreter designed specifically for video meetings. It seamlessly translates between sign language and speech, making video conferences accessible for mute participants while enabling them to be included in communication.
 
 ## 🌟 Features
 
 ### Core Functionality
 
-- **Real-time Speech-to-Sign Translation**: Converts spoken words into sign language animations
 - **Sign-to-Speech Conversion**: Translates sign language gestures into spoken words
+- **Augmented voice of user's choice**: Allows users to customize their desired voices
 - **Multi-platform Support**: Works with Zoom, Google Meet, Microsoft Teams, and Cisco Webex
 - **Browser Extension**: Seamless integration with video meeting platforms
 - **Web Application**: Standalone interpreter for general use
