@@ -92,20 +92,6 @@ InSync is an innovative real-time sign language to speech interpreter designed s
    - Click the SignSpeak icon and select "Hearing participant"
    - The interpreter will overlay sign language translations
 
-### For Deaf/Hard-of-Hearing Participants
-
-1. **Start Sign-to-Speech Mode**
-
-   - Click "Start Gesture Recognition" in the Sign to Speech tab
-   - Use sign language gestures
-   - Your signs will be converted to speech for hearing participants
-
-2. **Meeting Integration**
-   - Install the browser extension
-   - Join your video meeting
-   - Click the SignSpeak icon and select "Deaf/HoH participant"
-   - Your signs will be translated to speech for others
-
 ## 🛠️ Technical Architecture
 
 ### Frontend Components
