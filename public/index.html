@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Language Interpreter</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-hands"></i>
+                    <h1>SignSpeak</h1>
+                </div>
+                <div class="connection-status" id="connectionStatus">
+                    <i class="fas fa-circle"></i>
+                    <span>Connecting...</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Video Section -->
+            <section class="video-section">
+                <div class="video-container">
+                    <video id="userVideo" autoplay muted playsinline></video>
+                    <div class="video-overlay">
+                        <div class="gesture-indicator" id="gestureIndicator">
+                            <i class="fas fa-hand-paper"></i>
+                            <span>Ready</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="avatar-container" id="avatarContainer">
+                    <div class="sign-avatar" id="signAvatar">
+                        <div class="avatar-head">
+                            <div class="avatar-eyes">
+                                <div class="eye left-eye"></div>
+                                <div class="eye right-eye"></div>
+                            </div>
+                        </div>
+                        <div class="avatar-arms">
+                            <div class="arm left-arm" id="leftArm"></div>
+                            <div class="arm right-arm" id="rightArm"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Control Panel -->
+            <section class="control-panel">
+                <div class="panel-tabs">
+                    <button class="tab-btn active" data-tab="speech-to-sign">
+                        <i class="fas fa-microphone"></i>
+                        Speech to Sign
+                    </button>
+                    <button class="tab-btn" data-tab="sign-to-speech">
+                        <i class="fas fa-hand-paper"></i>
+                        Sign to Speech
+                    </button>
+                    <button class="tab-btn" data-tab="meeting">
+                        <i class="fas fa-video"></i>
+                        Meeting Mode
+                    </button>
+                </div>
+
+                <!-- Speech to Sign Tab -->
+                <div class="tab-content active" id="speech-to-sign">
+                    <div class="speech-controls">
+                        <button class="control-btn primary" id="startListening">
+                            <i class="fas fa-microphone"></i>
+                            Start Listening
+                        </button>
+                        <button class="control-btn secondary" id="stopListening" disabled>
+                            <i class="fas fa-stop"></i>
+                            Stop Listening
+                        </button>
+                    </div>
+                    
+                    <div class="transcript-display">
+                        <h3>Live Transcript</h3>
+                        <div class="transcript-text" id="transcriptText">
+                            <p class="placeholder">Click "Start Listening" to begin speech recognition...</p>
+                        </div>
+                    </div>
+
+                    <div class="sign-display">
+                        <h3>Sign Language Translation</h3>
+                        <div class="sign-animation-container" id="signAnimation">
+                            <div class="sign-word" id="currentSign">Ready</div>
+                            <div class="sign-gloss" id="signGloss">Waiting for speech...</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sign to Speech Tab -->
+                <div class="tab-content" id="sign-to-speech">
+                    <div class="gesture-controls">
+                        <button class="control-btn primary" id="startGestures">
+                            <i class="fas fa-hand-paper"></i>
+                            Start Gesture Recognition
+                        </button>
+                        <button class="control-btn secondary" id="stopGestures" disabled>
+                            <i class="fas fa-stop"></i>
+                            Stop Recognition
+                        </button>
+                        <button class="control-btn tertiary" id="toggleLandmarks" disabled>
+                            <i class="fas fa-eye"></i>
+                            Landmarks Always On
+                        </button>
+                    </div>
+                    
+                    <div class="gesture-display">
+                        <h3>Detected Gestures</h3>
+                        <div class="gesture-list" id="gestureList">
+                            <div class="gesture-item placeholder">
+                                <i class="fas fa-hand-paper"></i>
+                                <span>Start gesture recognition to see detected signs...</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="speech-output">
+                        <h3>Speech Output</h3>
+                        <div class="speech-text" id="speechText">
+                            <p class="placeholder">Gestures will be converted to speech here...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Meeting Mode Tab -->
+                <div class="tab-content" id="meeting">
+                    <div class="meeting-setup">
+                        <div class="input-group">
+                            <label for="meetingId">Meeting ID</label>
+                            <input type="text" id="meetingId" placeholder="Enter meeting ID or link">
+                        </div>
+                        
+                        <div class="participant-type">
+                            <h4>I am:</h4>
+                            <div class="radio-group">
+                                <label class="radio-option">
+                                    <input type="radio" name="participantType" value="hearing" checked>
+                                    <span>Hearing participant (speech to sign)</span>
+                                </label>
+                                <label class="radio-option">
+                                    <input type="radio" name="participantType" value="deaf">
+                                    <span>Deaf/Hard of hearing (sign to speech)</span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button class="control-btn primary" id="joinMeeting">
+                            <i class="fas fa-video"></i>
+                            Join Meeting
+                        </button>
+                    </div>
+
+                    <div class="meeting-status" id="meetingStatus">
+                        <div class="status-item">
+                            <i class="fas fa-users"></i>
+                            <span>Meeting participants: <span id="participantCount">0</span></span>
+                        </div>
+                        <div class="status-item">
+                            <i class="fas fa-language"></i>
+                            <span>Interpreter status: <span id="interpreterStatus">Not connected</span></span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Settings Panel -->
+        <aside class="settings-panel" id="settingsPanel">
+            <div class="settings-header">
+                <h3>Settings</h3>
+                <button class="close-settings" id="closeSettings">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            
+            <div class="settings-content">
+                <div class="setting-group">
+                    <label for="signLanguage">Sign Language</label>
+                    <select id="signLanguage">
+                        <option value="asl">American Sign Language (ASL)</option>
+                        <option value="bsl">British Sign Language (BSL)</option>
+                        <option value="lsf">French Sign Language (LSF)</option>
+                    </select>
+                </div>
+
+                <div class="setting-group">
+                    <label for="speechRate">Speech Rate</label>
+                    <input type="range" id="speechRate" min="0.5" max="2" step="0.1" value="1">
+                    <span class="range-value" id="speechRateValue">1.0</span>
+                </div>
+
+                <div class="setting-group">
+                    <label for="gestureSensitivity">Gesture Sensitivity</label>
+                    <input type="range" id="gestureSensitivity" min="0.1" max="1" step="0.1" value="0.7">
+                    <span class="range-value" id="gestureSensitivityValue">0.7</span>
+                </div>
+
+                <div class="setting-group">
+                    <label for="gestureCooldown">Gesture Cooldown (ms)</label>
+                    <input type="range" id="gestureCooldown" min="500" max="3000" step="100" value="1000">
+                    <span class="range-value" id="gestureCooldownValue">1000</span>
+                </div>
+
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="showSubtitles" checked>
+                        Show subtitles
+                    </label>
+                </div>
+
+                <div class="setting-group">
+                    <label>
+                        <input type="checkbox" id="autoStart" checked>
+                        Auto-start interpreter
+                    </label>
+                </div>
+            </div>
+        </aside>
+
+        <!-- Floating Settings Button -->
+        <button class="floating-settings" id="floatingSettings">
+            <i class="fas fa-cog"></i>
+        </button>
+
+        <!-- Loading Overlay -->
+        <div class="loading-overlay" id="loadingOverlay">
+            <div class="loading-spinner">
+                <i class="fas fa-hands"></i>
+                <p>Initializing Sign Language Interpreter...</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/camera_utils/camera_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,353 @@
+/* SignSpeak Overlay Styles */
+#signspeak-overlay {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 320px;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-radius: 16px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    z-index: 10000;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    color: #333;
+    user-select: none;
+    transition: all 0.3s ease;
+}
+
+.signspeak-container {
+    position: relative;
+}
+
+.signspeak-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 16px 16px 0 0;
+    cursor: move;
+    color: white;
+}
+
+.signspeak-logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.signspeak-controls {
+    display: flex;
+    gap: 8px;
+}
+
+.signspeak-controls button {
+    width: 24px;
+    height: 24px;
+    border: none;
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+    transition: background 0.2s ease;
+}
+
+.signspeak-controls button:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.signspeak-content {
+    padding: 16px;
+}
+
+.signspeak-main {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 16px;
+}
+
+.signspeak-avatar {
+    position: relative;
+    width: 60px;
+    height: 60px;
+    flex-shrink: 0;
+}
+
+.avatar-head {
+    width: 30px;
+    height: 30px;
+    background: #ffd93d;
+    border-radius: 50%;
+    position: absolute;
+    top: 8px;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 2px solid #fff;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.avatar-eyes {
+    position: absolute;
+    top: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+}
+
+.eye {
+    width: 4px;
+    height: 4px;
+    background: #333;
+    border-radius: 50%;
+    animation: blink 3s infinite;
+}
+
+@keyframes blink {
+    0%, 90%, 100% { transform: scaleY(1); }
+    95% { transform: scaleY(0.1); }
+}
+
+.avatar-arms {
+    position: absolute;
+    top: 38px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 45px;
+    height: 24px;
+}
+
+.arm {
+    position: absolute;
+    width: 8px;
+    height: 20px;
+    background: #ffd93d;
+    border-radius: 4px;
+    border: 1px solid #fff;
+    top: 0;
+    transition: transform 0.3s ease;
+}
+
+.left-arm {
+    left: 8px;
+}
+
+.right-arm {
+    right: 8px;
+}
+
+.arm.signing {
+    animation: signAnimation 1s ease-in-out;
+}
+
+@keyframes signAnimation {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(15deg); }
+}
+
+.signspeak-text {
+    flex: 1;
+}
+
+.current-sign {
+    font-size: 24px;
+    font-weight: 700;
+    color: #667eea;
+    margin-bottom: 4px;
+    min-height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+.sign-gloss {
+    font-size: 12px;
+    color: #666;
+    font-weight: 500;
+}
+
+.signspeak-transcript {
+    background: rgba(102, 126, 234, 0.05);
+    border: 1px solid rgba(102, 126, 234, 0.1);
+    border-radius: 8px;
+    padding: 12px;
+    margin-bottom: 12px;
+    min-height: 40px;
+}
+
+.transcript-text {
+    font-size: 12px;
+    line-height: 1.4;
+    color: #555;
+}
+
+.signspeak-status {
+    display: flex;
+    justify-content: center;
+}
+
+.status-indicator {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 6px 12px;
+    background: rgba(108, 117, 125, 0.1);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 500;
+}
+
+.status-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: #6c757d;
+}
+
+.status-dot.ready {
+    background: #51cf66;
+}
+
+.status-dot.listening {
+    background: #ffd43b;
+    animation: pulse 1.5s infinite;
+}
+
+.status-dot.speaking {
+    background: #339af0;
+    animation: pulse 1s infinite;
+}
+
+.status-dot.error {
+    background: #ff6b6b;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    #signspeak-overlay {
+        width: 280px;
+        top: 10px;
+        right: 10px;
+    }
+    
+    .signspeak-main {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .signspeak-avatar {
+        margin-bottom: 8px;
+    }
+}
+
+/* Animation for overlay appearance */
+#signspeak-overlay {
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(100%);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Ensure overlay stays above meeting content */
+#signspeak-overlay {
+    z-index: 999999 !important;
+}
+
+/* Platform-specific adjustments */
+/* Zoom */
+.zoom-web-client #signspeak-overlay {
+    top: 80px;
+}
+
+/* Google Meet */
+[data-call-ended] #signspeak-overlay,
+[data-call-ended] #signspeak-overlay * {
+    display: none !important;
+}
+
+/* Teams */
+.teams-app #signspeak-overlay {
+    top: 60px;
+}
+
+/* Webex */
+.webex-meeting #signspeak-overlay {
+    top: 70px;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+    #signspeak-overlay,
+    .arm.signing,
+    .status-dot.listening,
+    .status-dot.speaking,
+    .eye {
+        animation: none !important;
+    }
+}
+
+/* High contrast mode */
+@media (prefers-contrast: high) {
+    #signspeak-overlay {
+        background: white;
+        border: 2px solid #000;
+        color: #000;
+    }
+    
+    .signspeak-header {
+        background: #000;
+        color: #fff;
+    }
+    
+    .status-dot.ready {
+        background: #000;
+    }
+    
+    .status-dot.error {
+        background: #ff0000;
+    }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    #signspeak-overlay {
+        background: rgba(33, 37, 41, 0.95);
+        color: #fff;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .signspeak-transcript {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+    
+    .transcript-text {
+        color: #ccc;
+    }
+    
+    .sign-gloss {
+        color: #aaa;
+    }
+    
+    .status-indicator {
+        background: rgba(255, 255, 255, 0.1);
+    }
+}
