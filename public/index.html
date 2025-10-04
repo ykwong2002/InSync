@@ -118,47 +118,6 @@
                             <p class="placeholder">Gestures will be converted to speech here...</p>
                         </div>
                     </div>
-
-                    <div class="calibration-panel">
-                        <div class="panel-header">
-                            <h3>Teach Custom Gestures</h3>
-                            <span class="calibration-status" id="calibrationStatus">Idle</span>
-                        </div>
-
-                        <div class="calibration-controls">
-                            <div class="input-group">
-                                <label for="calibrationLabel">Gesture Label</label>
-                                <input type="text" id="calibrationLabel" placeholder="e.g. raise_hand" autocomplete="off">
-                            </div>
-
-                            <div class="calibration-actions">
-                                <button class="control-btn primary" id="startCalibrationBtn">
-                                    <i class="fas fa-plus-circle"></i>
-                                    Start Calibration
-                                </button>
-                                <button class="control-btn secondary" id="stopCalibrationBtn" disabled>
-                                    <i class="fas fa-check"></i>
-                                    Finish
-                                </button>
-                                <button class="control-btn tertiary" id="cancelCalibrationBtn" disabled>
-                                    <i class="fas fa-times"></i>
-                                    Cancel
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="calibration-progress">
-                            <div class="progress-bar">
-                                <div class="progress-fill" id="calibrationProgress"></div>
-                            </div>
-                            <div class="progress-details">
-                                <span id="calibrationCount">0 / 0 samples</span>
-                                <button class="link-btn" id="clearCalibrationBtn" type="button">
-                                    Clear Saved Models
-                                </button>
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <!-- Meeting Mode Tab -->
@@ -276,7 +235,6 @@
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/control_utils/control_utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/drawing_utils/drawing_utils.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/@mediapipe/hands/hands.js"></script>
-    <script type="module" src="bundle.js"></script>
     <script src="app.js"></script>
 </body>
 </html>
