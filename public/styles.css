@@ -278,6 +278,96 @@ body {
     font-weight: 600;
 }
 
+.calibration-panel {
+    margin-top: 1.5rem;
+    background: rgba(255, 255, 255, 0.92);
+    border-radius: 16px;
+    padding: 1.5rem;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.08);
+    border: 1px solid rgba(102, 126, 234, 0.12);
+}
+
+.calibration-panel .panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.calibration-panel h3 {
+    margin: 0;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.calibration-status {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #667eea;
+    background: rgba(102, 126, 234, 0.12);
+    padding: 0.35rem 0.75rem;
+    border-radius: 999px;
+}
+
+.calibration-controls {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 1rem;
+}
+
+.calibration-actions {
+    display: flex;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+}
+
+.calibration-actions .control-btn {
+    flex: 1 1 160px;
+}
+
+.calibration-progress {
+    margin-top: 1rem;
+}
+
+.progress-bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(102, 126, 234, 0.15);
+    border-radius: 999px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+}
+
+.progress-fill {
+    width: 0;
+    height: 100%;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    border-radius: 999px;
+    transition: width 0.3s ease;
+}
+
+.progress-details {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.link-btn {
+    background: none;
+    border: none;
+    color: #667eea;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+    text-decoration: underline;
+}
+
+.link-btn:hover {
+    color: #5a6fd8;
+}
+
 .transcript-text, .speech-text {
     background: rgba(102, 126, 234, 0.05);
     border: 1px solid rgba(102, 126, 234, 0.1);

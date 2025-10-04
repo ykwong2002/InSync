@@ -2,6 +2,24 @@
   "name": "sign-language-interpreter",
   "version": "1.0.0",
   "description": "Real-time sign language interpreter for video meetings",
+  "keywords": [
+    "sign-language",
+    "accessibility",
+    "real-time",
+    "video-meetings",
+    "interpreter"
+  ],
+  "homepage": "https://github.com/ykwong2002/InSync#readme",
+  "bugs": {
+    "url": "https://github.com/ykwong2002/InSync/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ykwong2002/InSync.git"
+  },
+  "license": "MIT",
+  "author": "HackHarvard Team",
+  "type": "commonjs",
   "main": "src/main.js",
   "scripts": {
     "start": "node server.js",
@@ -24,14 +42,5 @@
     "css-loader": "^6.8.1",
     "style-loader": "^3.3.3",
     "file-loader": "^6.2.0"
-  },
-  "keywords": [
-    "sign-language",
-    "accessibility",
-    "real-time",
-    "video-meetings",
-    "interpreter"
-  ],
-  "author": "HackHarvard Team",
-  "license": "MIT"
+  }
 }

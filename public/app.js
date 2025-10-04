@@ -341,6 +341,28 @@ class SignLanguageInterpreter {
       this.settings.autoStart = e.target.checked;
       this.saveSettings();
     });
+
+    if (!window.signSpeakApp) {
+      const startBtn = document.getElementById("startCalibrationBtn");
+      const stopBtn = document.getElementById("stopCalibrationBtn");
+      const cancelBtn = document.getElementById("cancelCalibrationBtn");
+      const clearBtn = document.getElementById("clearCalibrationBtn");
+
+      const showCalibrationNotice = () => {
+        this.showError(
+          "Custom calibration is available in the advanced build. Run `npm run build` and reload to use it."
+        );
+      };
+
+      [startBtn, stopBtn, cancelBtn, clearBtn]
+        .filter(Boolean)
+        .forEach((btn) => {
+          btn.addEventListener("click", (event) => {
+            event.preventDefault();
+            showCalibrationNotice();
+          });
+        });
+    }
   }
 
   switchTab(tabName) {
@@ -1098,6 +1120,9 @@ class SignLanguageInterpreter {
 
 // Initialize the application when the page loads
 document.addEventListener("DOMContentLoaded", () => {
+  if (window.signSpeakApp || window.interpreter) {
+    return;
+  }
   window.interpreter = new SignLanguageInterpreter();
 });
 
